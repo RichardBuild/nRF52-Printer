@@ -1,0 +1,16 @@
+/ {
+    zephyr,user {
+        clk-gpios = <&xiao_d 10 GPIO_ACTIVE_HIGH>;
+        sin-gpios = <&xiao_d 9 GPIO_ACTIVE_HIGH>;
+        sout-gpios = <&xiao_d 8 GPIO_ACTIVE_HIGH>;
+    };
+};
+
+&spi2 {
+    status = "disabled";
+};
+
+
+&nfct {
+    status = "okay";
+};
