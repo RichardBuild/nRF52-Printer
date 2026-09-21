@@ -1,10 +1,10 @@
-#include "usb_msc.h"
+#include "usb_device.h"
 
 #include <zephyr/device.h>
 #include <zephyr/usb/usbd.h>
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(app_usbd);
+LOG_MODULE_REGISTER(usb_device);
 
 // app_usbd is a usbd_context variable.
 USBD_DEVICE_DEFINE(app_usbd,
@@ -23,7 +23,7 @@ USBD_CONFIGURATION_DEFINE(app_fs_config,
 						  0,
 						  CONFIG_APP_USBD_MAX_POWER, &fs_cfg_desc);
 
-static struct usbd_context *app_usbd_setup_device(usbd_msg_cb_t msg_cb)
+static struct usbd_context *usb_device_setup(usbd_msg_cb_t msg_cb)
 {
 	int err;
 
@@ -84,11 +84,11 @@ static struct usbd_context *app_usbd_setup_device(usbd_msg_cb_t msg_cb)
 	return &app_usbd;
 }
 
-struct usbd_context *app_usbd_init_device(usbd_msg_cb_t msg_cb)
+struct usbd_context *usb_device_init(usbd_msg_cb_t msg_cb)
 {
 	int err;
 
-	if (app_usbd_setup_device(msg_cb) == NULL)
+	if (usb_device_setup(msg_cb) == NULL)
 	{
 		return NULL;
 	}
