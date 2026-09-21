@@ -6,30 +6,22 @@
 
 LOG_MODULE_REGISTER(app_usbd);
 
-/*
- * Instantiate a context named app_usbd using the default USB device
- * controller, the Zephyr project vendor ID, and the sample product ID.
- * Zephyr project vendor ID must not be used outside of Zephyr samples.
- */
-
 // app_usbd is a usbd_context variable.
 USBD_DEVICE_DEFINE(app_usbd,
 				   DEVICE_DT_GET(DT_NODELABEL(zephyr_udc0)),
-				   CONFIG_SAMPLE_USBD_VID, CONFIG_SAMPLE_USBD_PID);
+				   CONFIG_APP_USBD_VID, CONFIG_APP_USBD_PID);
 
 USBD_DESC_LANG_DEFINE(app_lang);
-USBD_DESC_MANUFACTURER_DEFINE(app_mfr, CONFIG_SAMPLE_USBD_MANUFACTURER);
-USBD_DESC_PRODUCT_DEFINE(app_product, CONFIG_SAMPLE_USBD_PRODUCT);
+USBD_DESC_MANUFACTURER_DEFINE(app_mfr, CONFIG_APP_USBD_MANUFACTURER);
+USBD_DESC_PRODUCT_DEFINE(app_product, CONFIG_APP_USBD_PRODUCT);
 IF_ENABLED(CONFIG_HWINFO, (USBD_DESC_SERIAL_NUMBER_DEFINE(app_sn)));
 
 USBD_DESC_CONFIG_DEFINE(fs_cfg_desc, "FS Configuration");
 
-static const uint8_t attributes = 0; // our device as no attributes
-
 /* Full speed configuration */
 USBD_CONFIGURATION_DEFINE(app_fs_config,
-						  attributes,
-						  CONFIG_SAMPLE_USBD_MAX_POWER, &fs_cfg_desc);
+						  0,
+						  CONFIG_APP_USBD_MAX_POWER, &fs_cfg_desc);
 
 static struct usbd_context *app_usbd_setup_device(usbd_msg_cb_t msg_cb)
 {
