@@ -4,13 +4,32 @@
         sin-gpios = <&xiao_d 9 GPIO_ACTIVE_HIGH>;
         sout-gpios = <&xiao_d 8 GPIO_ACTIVE_HIGH>;
     };
+
+    msc_disk0 {
+        compatible = "zephyr,flash-disk";
+        partition = <&msc_storage_partition>;
+        disk-name = "DISK";
+        cache-size = <4096>;
+    };
 };
 
 &spi2 {
     status = "disabled";
 };
 
-
 &nfct {
     status = "okay";
+};
+
+&p25q16h {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        msc_storage_partition: partition@0 {
+            label = "storage";
+            reg = <0x00000000 0x00200000>;
+        };
+    };
 };
