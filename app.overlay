@@ -8,7 +8,7 @@
     msc_disk0 {
         compatible = "zephyr,flash-disk";
         partition = <&msc_storage_partition>;
-        disk-name = "DISK";
+        disk-name = "NOR";
         cache-size = <4096>;
     };
 };
