@@ -3,4 +3,4 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(nrf52_Printer)
 
-target_sources(app PRIVATE src/main.c src/usb_device.c src/storage.c)
+target_sources(app PRIVATE src/main.c src/usb_device.c src/storage.c src/printer.c)
