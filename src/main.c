@@ -1,10 +1,10 @@
-#include <zephyr/kernel.h>
-#include <zephyr/logging/log.h>
-#include <zephyr/usb/usbd.h>
-
 #include "usb_device.h"
 #include "storage.h"
 #include "printer.h"
+
+#include <zephyr/kernel.h>
+#include <zephyr/logging/log.h>
+#include <zephyr/usb/usbd.h>
 
 LOG_MODULE_REGISTER(main);
 

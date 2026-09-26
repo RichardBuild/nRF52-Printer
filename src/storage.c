@@ -1,3 +1,5 @@
+#include "storage.h"
+
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/usb/usbd.h>
